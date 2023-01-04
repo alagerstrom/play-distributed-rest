@@ -1,6 +1,6 @@
 #!/bin/bash
 
-local_ip=localhost
+local_ip=192.168.50.129
 linux_ip=192.168.50.210
 ports=(6789 6790 6791)
 names=(master orange cayenne)
