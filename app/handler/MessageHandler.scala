@@ -21,7 +21,7 @@ class MessageHandler @Inject()(sender: MessageSender, pingService: TickService) 
       return
     }
     printWithName("Connecting to master...")
-    sender.send(masterUrl, Message("connection", url))
+    sender.send(masterUrl, Message("connection", url, url))
   }
 
   def handleConnection(workerUrl: String): Unit = {
@@ -59,7 +59,7 @@ class MessageHandler @Inject()(sender: MessageSender, pingService: TickService) 
   }
 
   override def tick(): Unit = {
-    sendToAllWorkers(Message("tick", url))
+    sendToAllWorkers(Message("tick", url, url))
   }
 
   def sendToAllWorkers(message: Message): Unit = {

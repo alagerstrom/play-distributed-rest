@@ -5,8 +5,8 @@
 
 int main(int argc, char *argv[]) {
   // Check for the correct number of arguments
-  if (argc != 4) {
-    fprintf(stderr, "Usage: send_message U M C\n");
+  if (argc != 5) {
+    fprintf(stderr, "Usage: send_message U M C R\n");
     return 1;
   }
 
@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
   char *U = argv[1];
   char *M = argv[2];
   char *C = argv[3];
+  char *R = argv[4];
 
   // Create the full URL by concatenating U and /message
   char url[1024];
@@ -21,7 +22,7 @@ int main(int argc, char *argv[]) {
 
   // Create the payload string
   char payload[1024];
-  snprintf(payload, sizeof(payload), "{\"messageType\":\"%s\", \"content\": \"%s\"}", M, C);
+  snprintf(payload, sizeof(payload), "{\"messageType\":\"%s\", \"content\": \"%s\", \"replyTo\": \"%s\"}", M, C, R);
 
   CURL *curl;
   CURLcode res;

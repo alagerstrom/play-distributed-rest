@@ -12,9 +12,10 @@ class MessageSender @Inject() (ws: WSClient, ec: ExecutionContext){
   def send(toUrl: String, message: Message): Unit = {
     ws.url(toUrl + "/message")
       .withHttpHeaders(("Content-Type", "application/json"))
-      .post(Json.fo(
+      .post(Json.obj(
         "messageType" -> message.messageType,
-        "content" -> message.content
+        "content" -> message.content,
+        "replyTo" -> message.replyTo
       ))
       .map(response => {
 //        println("Received response")
